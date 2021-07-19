@@ -21,14 +21,7 @@ users = new Map();
 // bind the socket with the http server just you created
 Takes the http server and some options will be delt later 
  */
-const io = socket(server, {
-  cors: {
-    origin: "https://fast-ravine-16774.herokuapp.com",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true,
-  },
-});
+const io = socket(server);
 
 io.use((socket, next) => {
   const username = socket.handshake.auth.username;
