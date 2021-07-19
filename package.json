@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simple chatapp.",
   "main": "server.js",
+  "engines": {
+    "node": "12.18.4"
+  },
   "scripts": {
     "start": "nodemon server.js"
   },
