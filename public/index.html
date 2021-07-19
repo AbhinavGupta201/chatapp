@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="image/icons8-chat-48.png" type="image/x-icon">
+    <title>Chat-App</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/color.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="chat-app">
+        <h1 id="mychat">ChatApp</h1>
+        <div id="info">
+            <p id="welcome"> <b>Welcome in Our Chat-App</b>
+                <br>
+                Please enter username to join in the room
+            </p>
+            <input type="text" id="username" placeholder="Enter your username">
+            <button type="submit" id="join-chat">Join</button>
+        </div>
+        <div id="chat_room">
+            <div id="users_list">
+                <!-- users list go here !! -->
+            </div>
+            <div id="chat_area">
+                <div id="chat_info">
+                    <p id="active_users"></p>
+                    <p id="typing"></p>
+                    <p id="leave_chat">Leave</p>
+                </div>
+                <div id="chat">
+                </div>
+                <div id="msg_box">
+                    <!-- <textarea  id="message" cols="30" rows="10"></textarea> -->
+                    <textarea type="text" rows="100" cols="40" style="height: 30px;" id="message"
+                        placeholder="Enter the message" spellcheck="false"></textarea>
+                    <div id="feilds">
+                        <p>Send-To</p>
+                        <select id="send-to" required style="height: 40px;">
+                            <option value="">--select--</option>
+                        </select>
+                    </div>
+                    <img src="./image/send_button.png" alt="send message" id="send" height="40px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+</html>

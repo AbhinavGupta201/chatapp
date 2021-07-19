@@ -1,0 +1,30 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "A simple chatapp.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhinavGupta201/chatapp.git"
+  },
+  "keywords": [
+    "chatapp",
+    "node.js",
+    "socket.io"
+  ],
+  "author": "Abhinav Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbhinavGupta201/chatapp/issues"
+  },
+  "homepage": "https://github.com/AbhinavGupta201/chatapp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.2",
+    "nodemon": "^2.0.12",
+    "socket.io": "^4.1.3"
+  }
+}
