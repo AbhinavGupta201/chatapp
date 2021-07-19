@@ -23,7 +23,7 @@ Takes the http server and some options will be delt later
  */
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:4444",
+    origin: "https://fast-ravine-16774.herokuapp.com",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,

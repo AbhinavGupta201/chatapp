@@ -79,7 +79,7 @@ function Start_Conversation() {
   info.remove();
 
   // socket events
-  socket = io("http://localhost:4444", {
+  socket = io("https://fast-ravine-16774.herokuapp.com", {
     autoconnect: false,
   });
   // append the username in the auth object
