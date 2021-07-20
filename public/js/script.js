@@ -18,7 +18,6 @@ function Ready() {
   typing.addEventListener("keyup", (e) => {
     clearTimeout(t);
     t=setTimeout(()=>{
-      console.log("stopped typing");
       socket.emit("stopped_typing");
     },5000)
   });
@@ -26,7 +25,6 @@ function Ready() {
 
 // user is typing
 function User_Typing() {
-  console.log("user is typing ... ");
   clearTimeout(t);
   socket.emit("typing");
 }
@@ -89,7 +87,6 @@ function Start_Conversation() {
   // add a event listener to the leave-chat 
   let leave=document.getElementById("leave_chat")
   leave.addEventListener("click",()=>{
-    console.log("you clicked the leave chat!!");
     socket.on("want_to_disconnect")
     location.replace('logout.html');
   })
@@ -104,7 +101,6 @@ function Start_Conversation() {
     req.message = message.value;
 
     let sendto=document.getElementById("send-to").value
-    console.log("You selected:"+sendto)
     if(sendto=="All")
     {
       socket.emit("message", req);
@@ -119,7 +115,6 @@ function Start_Conversation() {
 
   // greeting from the server
   socket.on("greeting", (data) => {
-    console.log(data);
     let message_div = document.getElementById("chat");
     let p = createCard(data);
     message_div.appendChild(p);
@@ -127,7 +122,6 @@ function Start_Conversation() {
 
   // user disconnection info
   socket.on("user_disconnected", (data) => {
-    console.log(data);
     let message_div = document.getElementById("chat");
     let p = createCard(data);
     message_div.appendChild(p);
@@ -137,7 +131,6 @@ function Start_Conversation() {
   socket.on("message", (data) => {
     let li = document.getElementById("typing");
     li.innerHTML = "";
-    console.log(data);
     let message_div = document.getElementById("chat");
     let p = createCard(data);
     message_div.appendChild(p);
@@ -160,7 +153,6 @@ function Start_Conversation() {
 
   // stopped_typing
   socket.on("stopped_typing",()=>{
-    console.log("server syas: stopped typing!!");
     let li = document.getElementById("typing");
     li.style.marginLeft = "20px";
     li.innerHTML = ``;
@@ -178,7 +170,6 @@ function Start_Conversation() {
       if (a.username < b.username) return -1;
       return a.username > b.username ? 1 : 0;
     });
-    console.log(users);
     //clear the existing user:List in the list
     document.getElementById("users_list").innerHTML=""
     document.getElementById("send-to").innerHTML=`

@@ -8,10 +8,8 @@ const helper = require("./helper");
 const app = express();
 
 app.use("/", express.static(__dirname + "./../public"));
-console.log(__dirname + "/../public/");
 // port number to listen to
 const port = process.env.PORT||4444;
-console.log(port)
 
 // create a http server
 const server = http.createServer(app);
@@ -37,7 +35,6 @@ function Populate_List() {}
 io.on("connection", (socket) => {
   // username add to users varible
   let id = socket.id;
-  console.log(socket.id + socket.username)
   users.set(socket.username,id);
   // greet the user
   let time = helper.getTime();
@@ -46,11 +43,9 @@ io.on("connection", (socket) => {
   res.message = `${socket.username} joined `;
   res.time = `[ ${time} ]`;
   res.username = `${socket.username}`;
-  // console.log("User Joind id: ", users.get(id));
   socket.broadcast.emit("greeting", res);
   res.message = `you joined `;
   socket.emit("greeting", res);
-  console.log(res);
   // active user
   io.emit("active_users", users.size);
 
@@ -73,7 +68,6 @@ io.on("connection", (socket) => {
     res.message = data.message;
     res.time = `[ ${time} ]`;
     res.username = `${socket.username}`;
-    console.log("message from  " + socket.username + " :" + data.message);
     // emit to the same client
     res.type = "self";
     socket.emit("message", res);
@@ -85,7 +79,6 @@ io.on("connection", (socket) => {
   // disconnection
   socket.on("disconnect", (reason) => {
     let time = helper.getTime();
-    console.log(reason);
     let res = {};
     res.type = "info";
     res.message = `${socket.username} Left `;
@@ -112,13 +105,11 @@ io.on("connection", (socket) => {
   socket.on("typing", () => {
     let res = {};
     res.username = socket.username;
-    console.log(res.username + "Is typing...");
     socket.broadcast.emit("typing", res);
   });
 
   // socket stopped typing typing event
   socket.on("stopped_typing",()=>{
-    console.log(socket.username +'stopped typing');
     socket.broadcast.emit("stopped_typing");
   })
 
@@ -129,8 +120,6 @@ io.on("connection", (socket) => {
 
   // socket private
   socket.on("private_message", (data) => {
-    console.log("message from the client:"+data);
-    console.log("send to:" + data.to +"message: "+data.message);
     let time = helper.getTime();
     let res = {};
     res.type = "new_message";
@@ -138,7 +127,6 @@ io.on("connection", (socket) => {
     res.time = `[ ${time} ]`;
     res.username = `${socket.username}`;
     io.to(users.get(data.to)).emit("message",res);
-    console.log("message from  " + socket.username + " :" + data.message);
     // emit to the same client
     res.type = "self";
     socket.emit("message", res);
@@ -147,5 +135,5 @@ io.on("connection", (socket) => {
 
 // start the server and listen on the port
 server.listen(port, () => {
-  console.log("server started on the url:" + "http://localhost:4444");
+  console.log("started :");
 });
